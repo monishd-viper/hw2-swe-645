@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Class Homepage</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- the stylesheet of W3.CSS is used -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    /*the font family and background colour and the alignment is set under the body tag */
+    body {
+      font-family: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+      font-weight: normal;
+      background-color: lightcyan; 
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    /* header colour is set as black */
+    h1, h2 {
+      color: black;
+      font-weight: 600;
+    }
+    /* Styling for paragraph */
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+    /*Flex box container */
+    .content {
+      display: flex;
+      justify-content: center; /* alignment of the content horizontally */
+      align-items: flex-start;
+      padding: 20px;
+    }
+    /* Styling for image container */
+    .image-container {
+      position: relative;
+      max-width: 400px;
+      margin-right: 40px; /* Adding the space between image and text */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth hover animation for the image */
+    }
+    /* tried a 3D effect to the image */
+    .image-container:hover {
+      transform: perspective(500px) rotateY(10deg);
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    /* styling for the image */
+    .content img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* Overlaying the name on the image */
+    .name-over-image {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background for readability */
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    /* hobbies section styling*/
+    .hobbies {
+      max-width: 600px; 
+      text-align: left;
+    }
+    .hobbies h2 {
+      margin-top: 20px;
+    }
+    /* goals section styling */
+    .goals {
+      max-width: 800px;
+      margin: 40px auto; /* Centering the goals section */
+      text-align: left;
+      padding: 20px;
+      background-color: lightgoldenrodyellow;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Box shadow for 3D effect */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    /*Hover Effect for goals sections*/
+    .goals:hover {
+      transform: perspective(500px) translateZ(10px);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+    }
+    .goals h2 {
+      color: darkblue;
+      margin-bottom: 10px;
+    }
+    .goals p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    /* Background image section */
+    .bgimg-1 {
+      position: relative;
+      background-image: url("https://www.simplilearn.com/ice9/free_resources_article_thumb/software_development_hard.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 400px; /* Adjust as needed */
+    }
+    /* small text in the middle */
+    .w3-display-middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    /* Skills section with 3D hover effect */
+    .skills-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: lightgoldenrodyellow;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* box shadow for 3D effect */
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* 3D effect on hover using deep shadow */
+    .skills-section:hover {
+      transform: perspective(500px) translateZ(10px);
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+    }
+    .skills-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .w3-wide {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Full-screen background image with centered text overlay -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">A FULL STACK <span class="w3-hide-small">ENGINEER'S</span> WEBSITE</span>
+  </div>
+</div>
+
+<div class="content">
+  <!-- Image container with the name over the image -->
+  <div class="image-container">
+    <!-- Updated image from Google Drive -->
+    <img src="https://www.dropbox.com/scl/fi/7wvwxjl6ph58ua5oowti5/IMG_1529.PNG?rlkey=nt69wz926ywffuizsfd26u0dv&st=keukd837&raw=1" alt="Your Photo" />
+    <div class="name-over-image">Monish Dhilipkumar</div>
+  </div>
+
+  <!-- Text about hobbies -->
+  <div class="hobbies">
+    <h1>ABOUT ME</h1>
+    <p>Hi there! I'm Monish Dhilipkumar, a graduate student in Computer Science at George Mason University. I am very much interested in areas like Full-stack , Amazon web services and Operating systems. This page is also hosted in AWS S3!</p>
+    <h2>MY HOBBIES</h2>
+    <p>In my free time, I love exploring new technologies and gaining hands on experience using them and watching videos about their real world practicality. I also enjoy playing cricket,football and also reading fictional books and also experimenting with different games and virtual reality .</p>
+  </div>
+</div>
+
+<!-- Goals Section -->
+<div class="goals">
+  <h2>SHORT TERM GOALS</h2>
+  <p>My short term goal is to enhance my skills in full-stack development by building real-world projects that provide effiency and ease with real-life scenarios. I also aim to contribute to open-source projects and deepen my knowledge in up and coming technologies.</p>
+  <h2>LONG TERM GOALS</h2>
+  <p>In the long term I aim to focus on using the knowledge that I have developed and also the experience that I have gained in order to build an IT firm and also start many samll scale businesses that cater to the needs of the people in the future.</p>
+</div>
+
+<!-- Skills section -->
+<div class="skills-section">
+  <h2>Skills</h2>
+  <p class="w3-large w3-center w3-padding-16">I'm really good at:</p>
+  <p class="w3-wide"><i class="fa fa-camera"></i>Full-Stack Development</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:90%">90%</div>
+  </div>
+  <p class="w3-wide"><i class="fa fa-laptop"></i>Web Design UI/UX</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:85%">85%</div>
+  </div>
+  <p class="w3-wide"><i class="fa fa-photo"></i>Video Editing</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:70%">70%</div>
+  </div>
+</div>
+
+<div class="survey-link">
+  <p>In order to access the Survey Link hosted on the EC2: <a href="http://ec2-54-198-23-255.compute-1.amazonaws.com/" target="_blank">Click Here</a></p>
+</div>
+
+</body>
+</html>

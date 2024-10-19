@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Survey Form</title>
+    <style>
+        /* Here we set the complete body style and all the other necessary features */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+        }
+        /* The styles are set for the form */
+        .container {
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added a Box shadow for visual effect in the container*/
+            margin: 20px;
+        }
+        /* Setting the image section above the header and setting the structure of the image */
+        .form-header {
+            background-image: url('https://www.class.com/wp-content/uploads/2023/01/George-Mason-University-Customer-Story-Thumbnail.jpg'); /* Placeholder banner */
+            background-size: cover;
+            background-position: center;
+            height: 150px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 20px;
+        }
+
+        /* Setting the style for the font*/
+        h1 {
+            text-align: center;
+            color: darkgreen;
+            margin-bottom: 20px;
+        }
+        /* label for form input */
+        form label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Setting the input styles for text, email, tel, date, select, and textarea */
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea 
+        {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        /*Setting all the input types and setting the color for the fields that are active and set a blue light on the borders */
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="date"]:focus, select:focus, textarea:focus {
+            border-color: #007bff; 
+            outline: none;
+        }
+
+        /* Setting the checkbox and radio input styles */
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Setting the button styles for submit and cancel */
+        .submit-cancel {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Styling the submit button */
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue submit button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+    
+        /* Styling the cancel button */
+        button.cancel {
+            padding: 10px 20px;
+            background-color: #6c757d; /* Grey cancel button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* required fields indication color*/
+        .required {
+            color: rgb(247, 7, 7);
+        }
+
+        /* Color and font sizeError message for raffle validation */
+        .raffle-validation {
+            color: rgb(235, 29, 29);
+            font-size: 10px;
+            display: none;
+        }
+
+        /* Styling for checkbox and radio input groups */
+        .checkbox-group, .radio-group {
+            padding: 10px;
+            background-color: #ece3e3;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Setting the main container for the form -->
+    <div class="container">
+        <!-- Image banner -->
+        <div class="form-header"></div>
+
+        <!-- Title of the form -->
+        <h1>Student Survey Form</h1>
+
+        <!-- Start of the survey form -->
+        <form id="survey">
+            <!-- Creating the required fields as mentioned -->
+            <label>First Name <span class="required">*</span></label>
+            <input type="text" name="firstName" required>
+
+            <label>Last Name <span class="required">*</span></label>
+            <input type="text" name="lastName" required>
+
+            <label>Street Address <span class="required">*</span></label>
+            <input type="text" name="address" required>
+
+            <label>City <span class="required">*</span></label>
+            <input type="text" name="city" required>
+
+            <label>State <span class="required">*</span></label>
+            <input type="text" name="state" required>
+
+            <label>Zip <span class="required">*</span></label>
+            <input type="text" name="zip" required>
+
+            <label>Telephone Number <span class="required">*</span></label>
+            <input type="tel" name="phone" required>
+
+            <label>Email <span class="required">*</span></label>
+            <input type="email" name="email" required>
+
+            <label>Date of Survey <span class="required">*</span></label>
+            <input type="date" name="surveyDate" required>
+
+            <!-- Campus features represented in a checkbox option  -->
+            <label>What did you like the most about the campus? Select one or more options. <span class="required">*</span></label>
+            <div class="checkbox-group">
+                <input type="checkbox" name="preferences" value="Students"> Students<br>
+                <input type="checkbox" name="preferences" value="Location"> Location<br>
+                <input type="checkbox" name="preferences" value="Campus"> Campus<br>
+                <input type="checkbox" name="preferences" value="Atmosphere"> Atmosphere<br>
+                <input type="checkbox" name="preferences" value="Dorm Rooms"> Dorm Rooms<br>
+                <input type="checkbox" name="preferences" value="Sports"> Sports
+            </div>
+
+            <!-- Interest sources represented in the form of a radio button -->
+            <label>How did you become interested in the university? <span class="required">*</span></label>
+            <div class="radio-group">
+                <input type="radio" name="interestSource" value="Friends" required> Friends<br>
+                <input type="radio" name="interestSource" value="Television" required> Television<br>
+                <input type="radio" name="interestSource" value="Internet" required> Internet<br>
+                <input type="radio" name="interestSource" value="Other" required> Other
+            </div>
+
+            <!-- Recommendation mentioned in the form of dropdown -->
+            <label>How likely are you to recommend this school to others? <span class="required">*</span></label>
+            <select name="recommendation" required>
+                <option value="">Select an Option (from below)</option>
+                <option value="Very Likely">Very Likely</option>
+                <option value="Likely">Likely</option>
+                <option value="Unlikely">Unlikely</option>
+            </select>
+
+            <!-- Raffle section -->
+            <label>Enter at least 10 numbers separated by commas (1-100) to be enrolled in a raffle<span class="required">*</span></label>
+            <input type="text" id="raffle" name="raffle" required>
+            <div id="raffleValidation" class="raffle-validation">Please enter at least 10 numbers between 1 and 100 separated by proper commas.</div>
+
+            <!-- Additional comments section -->
+            <label>Additional Comments (if any)</label>
+            <textarea name="comments" rows="4"></textarea>
+
+            <!-- Submit and cancel buttons -->
+            <div class="submit-cancel">
+                <button type="submit">Submit</button>
+                <button type="reset" class="cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Waffle method done in the form using javascript
+        // JavaScript validation done for raffle input
+        document.getElementById('survey').addEventListener('submit', function (event) {
+            // Fetch the value entered in the raffle input
+            const raffleInput = document.getElementById('raffle').value;
+            // Split the input string into an array of numbers by using a comma
+            const raffleNumbers = raffleInput.split(',').map(Number);
+            //  Algorithm to check if there are at least 10 valid numbers and they are in the range of 1-100
+            const isValid = raffleNumbers.length >= 10 && raffleNumbers.every(num => num >= 1 && num <= 100);
+
+            // If the input is not valid, prevent form submission and show an error message
+            if (!isValid) {
+                event.preventDefault();
+                document.getElementById('raffleValidation').style.display = 'block';
+            } else {
+                // Hide the error message if input is valid
+                document.getElementById('raffleValidation').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
