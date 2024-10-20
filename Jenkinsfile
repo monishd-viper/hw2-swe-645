@@ -9,7 +9,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 // Checkout the repository code from GitHub
-                git 'https://github.com/monishd-viper/hw2-swe-645.git'
+                git branch: 'main', url: 'https://github.com/monishd-viper/hw2-swe-645.git'
             }
         }
 
