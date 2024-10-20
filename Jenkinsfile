@@ -15,7 +15,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image
+                    // Build the Docker image
                     def app = docker.build("${DOCKER_IMAGE}")
                 }
             }
@@ -32,15 +32,16 @@ pipeline {
             }
         }
 
-        stage('Deploy to Local Kubernetes') {
-            steps {
-                script {
-                    bat '''
-                    kubectl set image deployment/studentsurvey-deployment studentsurvey=${DOCKER_IMAGE}:latest
-                    kubectl apply -f kubernetes/deployment.yaml
-                    '''
-                }
-            }
-        }
+        // stage('Deploy to Local Kubernetes') {
+        //     steps {
+        //         script {
+        //             // Run Kubernetes commands to update the deployment
+        //             bat '''
+        //             kubectl set image deployment/studentsurvey-deployment studentsurvey=${DOCKER_IMAGE}:latest
+        //             kubectl apply -f kubernetes/deployment.yaml
+        //             '''
+        //         }
+        //     }
+        // }
     }
 }
