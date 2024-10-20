@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_IMAGE = 'monish898/studentsurvey'
-    }
-
     stages {
         stage('Clone Repository') {
             steps {
@@ -17,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    def app = docker.build("${DOCKER_IMAGE}")
+                    def app = docker.build("monish898/studentsurvey")
                 }
             }
         }
@@ -27,7 +23,7 @@ pipeline {
                 script {
                     // Push the Docker image to DockerHub
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
-                        def app = docker.build("${DOCKER_IMAGE}")
+                        def app = docker.build("monish898/studentsurvey")
                         app.push('latest')
                     }
                 }
@@ -37,10 +33,10 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Update the image in the Kubernetes deployment
-                    bat '''
-                    kubectl set image deployment/hw2-cluster-deployment container-0=${DOCKER_IMAGE}:latest
-                    '''
+                    // Directly specify the image name in kubectl command
+                    bat """
+                    kubectl set image deployment/hw2-cluster-deployment container-0=monish898/studentsurvey:latest
+                    """
                 }
             }
         }
