@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
+                // Clone the repository
                 git branch: 'main', url: 'https://github.com/monishd-viper/hw2-swe-645.git'
             }
         }
@@ -24,6 +25,7 @@ pipeline {
         stage('Push Docker Image to DockerHub') {
             steps {
                 script {
+                    // Push the Docker image to DockerHub
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
                         def app = docker.build("${DOCKER_IMAGE}")
                         app.push('latest')
@@ -32,16 +34,16 @@ pipeline {
             }
         }
 
-        // stage('Deploy to Local Kubernetes') {
-        //     steps {
-        //         script {
-        //             // Run Kubernetes commands to update the deployment
-        //             bat '''
-        //             kubectl set image deployment/studentsurvey-deployment studentsurvey=${DOCKER_IMAGE}:latest
-        //             kubectl apply -f kubernetes/deployment.yaml
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Update the Kubernetes deployment with the new Docker image
+                    bat '''
+                    kubectl set image deployment/hw2-cluster-deployment studentsurvey=${DOCKER_IMAGE}:latest
+                    kubectl apply -f kubernetes/deployment.yaml
+                    '''
+                }
+            }
+        }
     }
 }
