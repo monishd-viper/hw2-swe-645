@@ -37,8 +37,10 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Update the Kubernetes deployment with the new Docker image and container name
-                    bat "kubectl set image deployment/hw2-cluster-deployment container-0=${DOCKER_IMAGE}:latest"
+                    // Update the image in the Kubernetes deployment
+                    bat '''
+                    kubectl set image deployment/hw2-cluster-deployment container-0=${DOCKER_IMAGE}:latest
+                    '''
                 }
             }
         }
