@@ -24,8 +24,8 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}").inside {
-                        sh 'echo Running tests'
+                    docker.image("${DOCKER_IMAGE}").inside("-w /jenkins_workspace -v ${WORKSPACE}:/jenkins_workspace") {
+                        bat 'echo Running tests'
                     }
                 }
             }
@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy to Local Kubernetes') {
             steps {
                 script {
-                    sh '''
+                    bat '''
                     kubectl set image deployment/studentsurvey-deployment studentsurvey=${DOCKER_IMAGE}:latest
                     kubectl apply -f kubernetes/deployment.yaml
                     '''
