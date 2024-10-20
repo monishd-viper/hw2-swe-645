@@ -15,17 +15,18 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build the Docker image locally
+                    // Build Docker image
                     def app = docker.build("${DOCKER_IMAGE}")
                 }
             }
         }
 
-        stage('Run Tests') {
+        stage('Push Docker Image to DockerHub') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}").inside("-w /jenkins_workspace -v ${WORKSPACE}:/jenkins_workspace") {
-                        bat 'echo Running tests'
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
+                        def app = docker.build("${DOCKER_IMAGE}")
+                        app.push('latest')
                     }
                 }
             }
