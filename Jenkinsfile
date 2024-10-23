@@ -1,11 +1,18 @@
 pipeline {
     agent any
+    environment {
+        // Timestamp for versioning the Docker image
+        TIMESTAMP = "${currentBuild.startTimeInMillis}"
+        // Docker credentials and Docker Hub registry
+        registryCredential = 'dockerhub-credentials-id'
+        registry = 'monish898/studentsurvey'
+    }
 
     stages {
         stage('Clone Repository') {
             steps {
                 // Clone the repository
-                git branch: 'main', url: 'https://github.com/monishd-viper/hw2-swe-645.git'
+                checkout scm
             }
         }
 
@@ -13,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    def app = docker.build("monish898/studentsurvey")
+                    dockerImageBuild = docker.build("${registry}:${env.TIMESTAMP}")
                 }
             }
         }
@@ -22,9 +29,8 @@ pipeline {
             steps {
                 script {
                     // Push the Docker image to DockerHub
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials-id') {
-                        def app = docker.build("monish898/studentsurvey")
-                        app.push('latest')
+                    docker.withRegistry('', registryCredential) {
+                        dockerImageBuild.push()
                     }
                 }
             }
@@ -35,7 +41,7 @@ pipeline {
                 script {
                     // Directly specify the image name in kubectl command
                     bat """
-                    kubectl set image deployment/hw2-clusterdeployment container-0=monish898/studentsurvey:latest
+                    kubectl set image deployment/hw2-cluster-deployment container-0=${registry}:${env.TIMESTAMP}
                     """
                 }
             }
