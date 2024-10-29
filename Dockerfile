@@ -8,4 +8,4 @@ COPY . /usr/local/apache2/htdocs/
 RUN chmod -R 755 /usr/local/apache2/htdocs/
 
 # Expose port 80 to make the website available externally
-EXPOSE 80
+EXPOSE 8080

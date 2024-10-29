@@ -41,7 +41,7 @@ pipeline {
                 script {
                     // Directly specify the image name in kubectl command
                     bat """
-                    kubectl set image deployment/hw2-swe645 container-0=${registry}:${env.TIMESTAMP}
+                    kubectl set image deployment/swe-645hw2 container-0=${registry}:${env.TIMESTAMP}
                     """
                 }
             }
